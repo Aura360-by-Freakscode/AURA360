@@ -73,7 +73,7 @@ jobs:
       - name: Terraform Plan
         id: plan
         working-directory: ${{ env.TF_WORKING_DIR }}
-        run: terraform plan -var-file="${{ env.TFVARS_FILE }}" -out=tfplan
+        run: terraform plan -var-file="${{ github.workspace }}/${{ env.TFVARS_FILE }}" -out=tfplan
 
       - name: Subir plan como artefacto
         uses: actions/upload-artifact@v4

@@ -116,7 +116,7 @@ Consulta el propio workflow para más detalles de pasos, comandos y artefactos.
    - `TF_BACKEND_CONTAINER` = `tfstate`
    - `TF_BACKEND_STATE_KEY` = `aura360-prod.tfstate`
 2. **Variables opcionales** (como `TF_VAR_admin_object_id`) pueden definirse como secretos o `env` según el entorno.
-3. **Environments protegidos**: crea un Environment `prod` e impón aprobación manual antes de ejecutar `workflow_dispatch` con `auto_apply=true`. Desde el dispatch selecciona `tf_environment=prod` y `tfvars_file=infra/azure/terraform/envs/prod.tfvars`.
+3. **Environments protegidos**: crea un Environment `prod` e impón aprobación manual antes de ejecutar `workflow_dispatch` con `auto_apply=true`. Desde el dispatch selecciona `tf_environment=prod` y `tfvars_file=infra/azure/terraform/envs/prod.tfvars` (siempre relativo a la raíz del repo).
 4. **Monorepo awareness**: el workflow se dispara únicamente si cambian archivos dentro de `infra/azure/**` o el propio YAML, por lo que no molestará a otros equipos del monorepo.
 5. **Reutilizar planes**: después de un PR, descarga el artefacto `tfplan-prod` si necesitas aplicarlo localmente (`terraform apply tfplan`).
 
