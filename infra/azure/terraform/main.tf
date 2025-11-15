@@ -56,7 +56,7 @@ resource "azurerm_subnet" "aks" {
   virtual_network_name = azurerm_virtual_network.core.name
   address_prefixes     = [var.aks_subnet_cidr]
 
-  delegations {
+  delegation {
     name = "aks-delegation"
     service_delegation {
       name = "Microsoft.ContainerService/managedClusters"
