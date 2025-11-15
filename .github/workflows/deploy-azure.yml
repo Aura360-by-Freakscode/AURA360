@@ -33,6 +33,10 @@ env:
   TF_WORKING_DIR: infra/azure/terraform
   TFVARS_FILE: ${{ github.event.inputs.tfvars_file || 'infra/azure/terraform/envs/prod.tfvars' }}
   TF_ENVIRONMENT: ${{ github.event.inputs.tf_environment || 'prod' }}
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_USE_OIDC: true
 
 jobs:
   plan:
