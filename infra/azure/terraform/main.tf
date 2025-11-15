@@ -142,13 +142,12 @@ resource "azurerm_kubernetes_cluster" "aks" {
     docker_bridge_cidr = "172.17.0.1/16"
   }
 
-  monitor_metrics {
-    tier = var.enable_monitoring ? "Basic" : "None"
-  }
-
-  oms_agent {
-    msi_auth_for_monitoring_enabled = var.enable_monitoring
-    log_analytics_workspace_id      = var.enable_monitoring ? azurerm_log_analytics_workspace.main.id : null
+  dynamic "oms_agent" {
+    for_each = var.enable_monitoring ? [1] : []
+    content {
+      msi_auth_for_monitoring_enabled = true
+      log_analytics_workspace_id      = azurerm_log_analytics_workspace.main.id
+    }
   }
 
   tags = local.tags
